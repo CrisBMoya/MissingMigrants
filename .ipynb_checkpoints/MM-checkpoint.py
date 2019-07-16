@@ -30,4 +30,3 @@ MM["Lat"]=Lat
 MM["Lon"]=Lon
 
 
-MM.head()
