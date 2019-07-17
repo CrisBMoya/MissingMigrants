@@ -3,7 +3,9 @@ import numpy as np
 import re
 import os
 import plotly.plotly as py
+import plotly_express as px
 import plotly.graph_objs as go
+
 import math
 
 #Route
@@ -29,4 +31,15 @@ pass
 MM["Lat"]=Lat
 MM["Lon"]=Lon
 
+#There is only one nan value, so we will delete it
+sum(np.isnan(MM["Lat"]),0)
+MM=MM[~np.isnan(MM["Lat"])]
 
+#Plot based on coordinates
+GOLatLon=go.Figure()
+GOLatLon.add_trace(go.Scattergeo(
+        lon=MM["Lon"],
+        lat=MM["Lat"],
+        mode='markers'
+        ))
+GOLatLon.show()
