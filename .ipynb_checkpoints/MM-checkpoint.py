@@ -2,18 +2,18 @@ import pandas as pd
 import numpy as np
 import re
 import os
-import plotly.plotly as py
+import chart_studio.plotly as py #replaced by plotly.plotly as is deprecated according to some shit
 import plotly_express as px
 import plotly.graph_objs as go
-
 import math
 
 #Route
-DataFile=os.getcwd() + "\\Data\\MissingMigrants-Global-2019-03-29T18-36-07.csv"
+DataFile=os.getcwd() + "/Data/MissingMigrants-Global-2019-03-29T18-36-07.csv"
 
 #Read data
 MM=pd.read_csv(filepath_or_buffer=DataFile)
 MM.head()
+
 
 #Extract latitude and longitude into two columns
 Lat=[]
@@ -37,9 +37,15 @@ MM=MM[~np.isnan(MM["Lat"])]
 
 #Plot based on coordinates
 GOLatLon=go.Figure()
-GOLatLon.add_trace(go.Scattergeo(
+GOLatLon=GOLatLon.add_trace(go.Scattergeo(
         lon=MM["Lon"],
         lat=MM["Lat"],
-        mode='markers'
+        mode="markers"
         ))
-GOLatLon.show()
+py.iplot(GOLatLon)
+
+#Use size of dead and missing as marker size and as color as well
+GOLatLonSize=px.scatter_geo(data_frame=MM, lat="Lat", lon="Lon", size="Total Dead and Missing", color="Total Dead and Missing")
+py.iplot(GOLatLonSize)
+
+
