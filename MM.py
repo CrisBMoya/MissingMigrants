@@ -11,7 +11,7 @@ import math
 DataFile=os.getcwd() + "/Data/MissingMigrants-Global-2019-03-29T18-36-07.csv"
 
 #Read data
-MM=pd.read_csv(filepath_or_buffer=DataFile)
+MM=pd.read_csv(filepath_or_buffer="C:/Users/Tobal/Google Drive/Github/MissingMigrants/Data/MissingMigrants-Global-2019-03-29T18-36-07.csv")
 MM.head()
 
 
@@ -48,4 +48,4 @@ py.iplot(GOLatLon)
 GOLatLonSize=px.scatter_geo(data_frame=MM, lat="Lat", lon="Lon", size="Total Dead and Missing", color="Total Dead and Missing")
 py.iplot(GOLatLonSize)
 
-
+GOLatLonSize.show()
